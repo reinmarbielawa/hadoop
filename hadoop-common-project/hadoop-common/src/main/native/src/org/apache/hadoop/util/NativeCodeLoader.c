@@ -49,6 +49,15 @@ JNIEXPORT jboolean JNICALL Java_org_apache_hadoop_util_NativeCodeLoader_buildSup
 #endif
 }
 
+JNIEXPORT jboolean JNICALL Java_org_apache_hadoop_util_NativeCodeLoader_buildSupportsLzfse
+  (JNIEnv *env, jclass clazz)
+{
+#ifdef HADOOP_LZFSE_LIBRARY
+  return JNI_TRUE;
+#else
+  return JNI_FALSE;
+#endif
+}
 
 JNIEXPORT jboolean JNICALL Java_org_apache_hadoop_util_NativeCodeLoader_buildSupportsOpenssl
   (JNIEnv *env, jclass clazz)

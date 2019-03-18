@@ -181,6 +181,31 @@ Maven build goals:
     and it ignores the -Dzstd.prefix option. If -Dzstd.lib isn't given, the
     bundling and building will fail.
 
+ Lzfse build options:
+
+   Lzfse is a compression library that can be utilized by the native code.
+   It is currently an optional component, meaning that Hadoop can be built with
+   or without this dependency.
+
+  * Use -Drequire.lzfse to fail the build if liblzfse.so is not found.
+    If this option is not specified and the lzfse library is missing,
+    we silently build a version of libhadoop.so that cannot make use of lzfse.
+    This option is recommended if you plan on making use of lzfse and want
+    to get more repeatable builds.
+
+  * Use -Dlzfse.prefix to specify a nonstandard location for the liblzfse
+    header files and library files. You do not need this option if you have
+    installed lzfse using a package manager.
+
+  * Use -Dlzfse.lib to specify a nonstandard location for the liblzfse library
+    files.  Similarly to lzfse.prefix, you do not need this option if you have
+    installed using a package manager.
+
+  * Use -Dbundle.lzfse to copy the contents of the lzfse.lib directory into
+    the final tar file. This option requires that -Dlzfse.lib is also given,
+    and it ignores the -Dlzfse.prefix option. If -Dlzfse.lib isn't given, the
+    bundling and building will fail.
+
  OpenSSL build options:
 
    OpenSSL includes a crypto library that can be utilized by the native code.

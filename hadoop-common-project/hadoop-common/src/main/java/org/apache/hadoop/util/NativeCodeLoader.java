@@ -90,6 +90,11 @@ public final class NativeCodeLoader {
   public static native boolean buildSupportsZstd();
 
   /**
+  * Returns true only if this build was compiled with support for LZFSE.
+   */
+  public static native boolean buildSupportsLzfse();
+
+  /**
    * Returns true only if this build was compiled with support for openssl.
    */
   public static native boolean buildSupportsOpenssl();

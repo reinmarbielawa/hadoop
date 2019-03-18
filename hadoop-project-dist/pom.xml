@@ -44,6 +44,9 @@
     <zstd.lib></zstd.lib>
     <bundle.zstd>false</bundle.zstd>
     <bundle.zstd.in.bin>false</bundle.zstd.in.bin>
+    <lzfse.lib></lzfse.lib>
+    <bundle.lzfse>false</bundle.lzfse>
+    <bundle.lzfse.in.bin>false</bundle.lzfse.in.bin>
     <isal.lib></isal.lib>
     <bundle.isal>false</bundle.isal>
     <openssl.lib></openssl.lib>
@@ -356,6 +359,9 @@
                     <argument>--zstdbinbundle=${bundle.zstd.in.bin}</argument>
                     <argument>--zstdlib=${zstd.lib}</argument>
                     <argument>--zstdlibbundle=${bundle.zstd}</argument>
+                    <argument>--lzfsebinbundle=${bundle.lzfse.in.bin}</argument>
+                    <argument>--lzfselib=${lzfse.lib}</argument>
+                    <argument>--lzfselibbundle=${bundle.lzfse}</argument>
                   </arguments>
                 </configuration>
               </execution>

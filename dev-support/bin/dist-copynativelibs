@@ -123,6 +123,15 @@ for i in "$@"; do
     --zstdlibbundle=*)
       ZSTDLIBBUNDLE=${i#*=}
     ;;
+    --lzfsebinbundle=*)
+      LZFSEBINBUNDLE=${i#*=}
+    ;;
+     --lzfselib=*)
+      LZFSELIB=${i#*=}
+    ;;
+    --lzfselibbundle=*)
+      LZFSELIBBUNDLE=${i#*=}
+    ;;
 
   esac
 done
@@ -150,6 +159,8 @@ if [[ -d "${LIB_DIR}" ]]; then
 
   bundle_native_lib "${ZSTDLIBBUNDLE}" "zstd.lib" "zstd" "${ZSTDLIB}"
 
+  bundle_native_lib "${LZFSELIBBUNDLE}" "lzfse.lib" "lzfse" "${LZFSELIB}"
+
   bundle_native_lib "${OPENSSLLIBBUNDLE}" "openssl.lib" "crypto" "${OPENSSLLIB}"
 
   bundle_native_lib "${ISALBUNDLE}" "isal.lib" "isa" "${ISALLIB}"
@@ -171,6 +182,8 @@ if [[ -d "${BIN_DIR}" ]] ; then
   bundle_native_bin "${SNAPPYBINBUNDLE}" "${SNAPPYLIBBUNDLE}" "snappy.lib" "snappy" "${SNAPPYLIB}"
 
   bundle_native_bin "${ZSTDBINBUNDLE}" "${ZSTDLIBBUNDLE}" "zstd.lib" "zstd" "${ZSTDLIB}"
+
+  bundle_native_bin "${LZFSEBINBUNDLE}" "${LZFSELIBBUNDLE}" "lzfse.lib" "lzfse" "${LZFSELIB}"
 
   bundle_native_bin "${OPENSSLBINBUNDLE}" "${OPENSSLLIBBUNDLE}" "openssl.lib" "crypto" "${OPENSSLLIB}"
 

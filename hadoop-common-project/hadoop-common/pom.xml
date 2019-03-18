@@ -606,6 +606,10 @@
         <zstd.lib></zstd.lib>
         <zstd.include></zstd.include>
         <require.zstd>false</require.zstd>
+        <lzfse.prefix></lzfse.prefix>
+        <lzfse.lib></lzfse.lib>
+        <lzfse.include></lzfse.include>
+        <require.lzfse>false</require.lzfse>
         <openssl.prefix></openssl.prefix>
         <openssl.lib></openssl.lib>
         <openssl.include></openssl.include>
@@ -665,6 +669,8 @@
                     <javahClassName>org.apache.hadoop.io.compress.snappy.SnappyDecompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardCompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardDecompressor</javahClassName>
+                    <javahClassName>org.apache.hadoop.io.compress.lzfse.LzfseCompressor</javahClassName>
+                    <javahClassName>org.apache.hadoop.io.compress.lzfse.LzfseDecompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Compressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Decompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.erasurecode.ErasureCodeNative</javahClassName>
@@ -699,12 +705,16 @@
                     <REQUIRE_BZIP2>${require.bzip2}</REQUIRE_BZIP2>
                     <REQUIRE_SNAPPY>${require.snappy}</REQUIRE_SNAPPY>
                     <REQUIRE_ZSTD>${require.zstd}</REQUIRE_ZSTD>
+                    <REQUIRE_LZFSE>${require.lzfse}</REQUIRE_LZFSE>
                     <CUSTOM_SNAPPY_PREFIX>${snappy.prefix}</CUSTOM_SNAPPY_PREFIX>
                     <CUSTOM_SNAPPY_LIB>${snappy.lib} </CUSTOM_SNAPPY_LIB>
                     <CUSTOM_SNAPPY_INCLUDE>${snappy.include} </CUSTOM_SNAPPY_INCLUDE>
                     <CUSTOM_ZSTD_PREFIX>${zstd.prefix}</CUSTOM_ZSTD_PREFIX>
                     <CUSTOM_ZSTD_LIB>${zstd.lib} </CUSTOM_ZSTD_LIB>
                     <CUSTOM_ZSTD_INCLUDE>${zstd.include} </CUSTOM_ZSTD_INCLUDE>
+                    <CUSTOM_LZFSE_PREFIX>${lzfse.prefix}</CUSTOM_LZFSE_PREFIX>
+                    <CUSTOM_LZFSE_LIB>${lzfse.lib} </CUSTOM_LZFSE_LIB>
+                    <CUSTOM_LZFSE_INCLUDE>${lzfse.include} </CUSTOM_LZFSE_INCLUDE>
                     <REQUIRE_ISAL>${require.isal} </REQUIRE_ISAL>
                     <CUSTOM_ISAL_PREFIX>${isal.prefix} </CUSTOM_ISAL_PREFIX>
                     <CUSTOM_ISAL_LIB>${isal.lib} </CUSTOM_ISAL_LIB>
@@ -767,6 +777,11 @@
         <zstd.include></zstd.include>
         <require.ztsd>false</require.ztsd>
         <bundle.zstd.in.bin>true</bundle.zstd.in.bin>
+        <lzfse.prefix></lzfse.prefix>
+        <lzfse.lib></lzfse.lib>
+        <lzfse.include></lzfse.include>
+        <require.lzfse>false</require.lzfse>
+        <bundle.lzfse.in.bin>true</bundle.lzfse.in.bin>
         <openssl.prefix></openssl.prefix>
         <openssl.lib></openssl.lib>
         <openssl.include></openssl.include>
@@ -818,6 +833,8 @@
                     <javahClassName>org.apache.hadoop.io.compress.snappy.SnappyDecompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardCompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardDecompressor</javahClassName>
+                    <javahClassName>org.apache.hadoop.io.compress.lzfse.LzfseCompressor</javahClassName>
+                    <javahClassName>org.apache.hadoop.io.compress.lzfse.LzfseDecompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Compressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Decompressor</javahClassName>
                     <javahClassName>org.apache.hadoop.io.erasurecode.ErasureCodeNative</javahClassName>
@@ -877,7 +894,11 @@
                     <argument>/p:CustomZstdPrefix=${zstd.prefix}</argument>
                     <argument>/p:CustomZstdLib=${zstd.lib}</argument>
                     <argument>/p:CustomZstdInclude=${zstd.include}</argument>
-                    <argument>/p:RequireZstd=${require.ztsd}</argument>
+                    <argument>/p:RequireZstd=${require.zstd}</argument>
+                    <argument>/p:CustomLzfsePrefix=${lzfse.prefix}</argument>
+                    <argument>/p:CustomLzfseLib=${lzfse.lib}</argument>
+                    <argument>/p:CustomLzfseInclude=${lzfse.include}</argument>
+                    <argument>/p:RequireLzfse=${require.lzfse}</argument>
                     <argument>/p:CustomOpensslPrefix=${openssl.prefix}</argument>
                     <argument>/p:CustomOpensslLib=${openssl.lib}</argument>
                     <argument>/p:CustomOpensslInclude=${openssl.include}</argument>

@@ -121,6 +121,33 @@ else ()
     ENDIF(REQUIRE_ZSTD)
 endif ()
 
+# Require lzfse
+SET(STORED_CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES})
+hadoop_set_find_shared_library_version("1")
+find_library(LZFSE_LIBRARY
+    NAMES lzfse
+    PATHS ${CUSTOM_LZFSE_PREFIX} ${CUSTOM_LZFSE_PREFIX}/lib
+          ${CUSTOM_LZFSE_PREFIX}/lib64 ${CUSTOM_LZFSE_LIB})
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ${STORED_CMAKE_FIND_LIBRARY_SUFFIXES})
+find_path(LZFSE_INCLUDE_DIR
+    NAMES lzfse.h
+    PATHS ${CUSTOM_LZFSE_PREFIX} ${CUSTOM_LZFSE_PREFIX}/include
+          ${CUSTOM_LZFSE_INCLUDE})
+if (LZFSE_LIBRARY AND LZFSE_INCLUDE_DIR)
+    GET_FILENAME_COMPONENT(HADOOP_LZFSE_LIBRARY ${LZFSE_LIBRARY} NAME)
+    set(LZFSE_SOURCE_FILES
+        "${SRC}/io/compress/lzfse/LzfseCompressor.c"
+        "${SRC}/io/compress/lzfse/LzfseDecompressor.c")
+    set(REQUIRE_LZFSE ${REQUIRE_LZFSE}) # Stop warning about unused variable.
+        message(STATUS "Found lzfse: ${LZFSE_LIBRARY}")
+else ()
+    set(LZFSE_INCLUDE_DIR "")
+    set(LZFSE_SOURCE_FILES "")
+    IF(REQUIRE_LZFSE)
+        MESSAGE(FATAL_ERROR "Required lzfse library could not be found.  LZFSE_LIBRARY=${LZFSE_LIBRARY}, LZFSE_INCLUDE_DIR=${LZFSE_INCLUDE_DIR}, CUSTOM_LZFSE_INCLUDE_DIR=${CUSTOM_LZFSE_INCLUDE_DIR}, CUSTOM_LZFSE_PREFIX=${CUSTOM_LZFSE_PREFIX}, CUSTOM_LZFSE_INCLUDE=${CUSTOM_LZFSE_INCLUDE}")
+    ENDIF(REQUIRE_LZFSE)
+endif ()
+
 set(STORED_CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES})
 hadoop_set_find_shared_library_version("2")
 find_library(ISAL_LIBRARY
@@ -236,6 +263,7 @@ include_directories(
     ${SNAPPY_INCLUDE_DIR}
     ${ISAL_INCLUDE_DIR}
     ${ZSTD_INCLUDE_DIR}
+    ${LZFSE_INCLUDE_DIR}
     ${OPENSSL_INCLUDE_DIR}
     ${SRC}/util
 )
@@ -251,6 +279,7 @@ hadoop_add_dual_library(hadoop
     ${ISAL_SOURCE_FILES}
     ${SNAPPY_SOURCE_FILES}
     ${ZSTD_SOURCE_FILES}
+    ${LZFSE_SOURCE_FILES}
     ${OPENSSL_SOURCE_FILES}
     ${SRC}/io/compress/zlib/ZlibCompressor.c
     ${SRC}/io/compress/zlib/ZlibDecompressor.c
